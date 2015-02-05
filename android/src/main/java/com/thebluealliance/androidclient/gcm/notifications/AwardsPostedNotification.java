@@ -8,8 +8,6 @@ import android.content.res.Resources;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.thebluealliance.androidclient.R;
@@ -17,6 +15,7 @@ import com.thebluealliance.androidclient.activities.ViewEventActivity;
 import com.thebluealliance.androidclient.datafeed.JSONManager;
 import com.thebluealliance.androidclient.gcm.GCMMessageHandler;
 import com.thebluealliance.androidclient.helpers.MyTBAHelper;
+import com.thebluealliance.androidclient.listeners.NotificationDismissedListener;
 import com.thebluealliance.androidclient.models.Award;
 import com.thebluealliance.androidclient.models.StoredNotification;
 
@@ -48,13 +47,6 @@ public class AwardsPostedNotification extends BaseNotification {
             throw new JsonParseException("Notification data does not contain 'event_name'");
         }
         eventName = jsonData.get("event_name").getAsString();
-        if(!jsonData.has("awards") || jsonData.get("awards").isJsonArray()){
-            throw new JsonParseException("Notification data does not contain 'awards' list");
-        }
-        JsonArray awardArray = jsonData.get("awards").getAsJsonArray();
-        for(JsonElement element: awardArray){
-            awards.add(gson.fromJson(element, Award.class));
-        }
     }
 
     @Override
@@ -65,6 +57,7 @@ public class AwardsPostedNotification extends BaseNotification {
 
         Intent instance = ViewEventActivity.newInstance(context, eventKey);
         PendingIntent intent = PendingIntent.getActivity(context, 0, instance, 0);
+        PendingIntent onDismiss = PendingIntent.getBroadcast(context, 0, new Intent(context, NotificationDismissedListener.class), 0);
 
         stored = new StoredNotification();
         stored.setType(getNotificationType());
@@ -78,6 +71,7 @@ public class AwardsPostedNotification extends BaseNotification {
                 .setContentText(contentText)
                 .setLargeIcon(getLargeIconFormattedForPlatform(context, R.drawable.ic_assessment_white_24dp))
                 .setContentIntent(intent)
+                .setDeleteIntent(onDismiss)
                 .setGroup(GCMMessageHandler.GROUP_KEY)
                 .setAutoCancel(true)
                 .extend(new NotificationCompat.WearableExtender().setBackground(BitmapFactory.decodeResource(context.getResources(), R.drawable.tba_blue_background)));
