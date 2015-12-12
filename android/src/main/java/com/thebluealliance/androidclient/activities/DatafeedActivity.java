@@ -1,10 +1,5 @@
 package com.thebluealliance.androidclient.activities;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.TBAAndroid;
 import com.thebluealliance.androidclient.datafeed.refresh.RefreshController;
@@ -17,6 +12,11 @@ import com.thebluealliance.androidclient.interfaces.InvalidateHost;
 import com.thebluealliance.androidclient.models.APIStatus;
 import com.thebluealliance.androidclient.subscribers.SubscriberModule;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
+
 import javax.inject.Inject;
 
 import de.greenrobot.event.EventBus;
@@ -25,7 +25,7 @@ import de.greenrobot.event.EventBus;
  * An activity that serves as a host to datafeed fragments
  */
 public abstract class DatafeedActivity extends BaseActivity
-  implements HasFragmentComponent, InvalidateHost {
+        implements HasFragmentComponent, InvalidateHost {
 
     @Inject RefreshController mRefreshController;
     @Inject TBAStatusController mStatusController;
@@ -101,6 +101,7 @@ public abstract class DatafeedActivity extends BaseActivity
 
     /**
      * Extending activities can override this method to respond to TBA status updates
+     *
      * @param newStatus The new API Status
      */
     protected void onTbaStatusUpdate(APIStatus newStatus) {
@@ -132,12 +133,12 @@ public abstract class DatafeedActivity extends BaseActivity
         if (mComponent == null) {
             TBAAndroid application = ((TBAAndroid) getApplication());
             mComponent = DaggerFragmentComponent.builder()
-              .applicationComponent(application.getComponent())
-              .datafeedModule(application.getDatafeedModule())
-              .binderModule(application.getBinderModule())
-              .databaseWriterModule(application.getDatabaseWriterModule())
-              .subscriberModule(new SubscriberModule(this))
-              .build();
+                    .applicationComponent(application.getComponent())
+                    .datafeedModule(application.getDatafeedModule())
+                    .binderModule(application.getBinderModule())
+                    .databaseWriterModule(application.getDatabaseWriterModule())
+                    .subscriberModule(new SubscriberModule(this))
+                    .build();
         }
         return mComponent;
     }

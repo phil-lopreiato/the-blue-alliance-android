@@ -1,10 +1,10 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.adapters.ListViewAdapter;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import com.thebluealliance.androidclient.adapters.ListViewAdapter;
 
 public abstract class ListHeader implements ListItem {
     private final String name;
@@ -29,7 +29,7 @@ public abstract class ListHeader implements ListItem {
     @Override
     public boolean equals(Object o) {
         return (o instanceof ListHeader) &&
-          ((ListHeader) o).getText().equals(name);
+                ((ListHeader) o).getText().equals(name);
     }
 
     @Override

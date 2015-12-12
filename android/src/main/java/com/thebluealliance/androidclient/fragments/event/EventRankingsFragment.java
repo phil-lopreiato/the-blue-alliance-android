@@ -1,12 +1,7 @@
 package com.thebluealliance.androidclient.fragments.event;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.gson.JsonElement;
+
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.activities.TeamAtEventActivity;
 import com.thebluealliance.androidclient.adapters.ListViewAdapter;
@@ -15,6 +10,12 @@ import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
 import com.thebluealliance.androidclient.listitems.ListElement;
 import com.thebluealliance.androidclient.models.NoDataViewParams;
 import com.thebluealliance.androidclient.subscribers.RankingsListSubscriber;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import rx.Observable;
 
@@ -59,12 +60,12 @@ public class EventRankingsFragment extends ListViewFragment<JsonElement, Ranking
         View v = super.onCreateView(inflater, container, savedInstanceState);
         mListView.setOnItemClickListener((adapterView, view, position, id) -> {
             String teamKey = ((ListElement) ((ListViewAdapter) adapterView.getAdapter())
-              .getItem(position)).getKey();
+                    .getItem(position)).getKey();
             Intent intent = TeamAtEventActivity.newInstance(getActivity(), mEventKey, teamKey);
 
              /* Track the call */
             AnalyticsHelper.sendClickUpdate(
-              getActivity(), "team@event_click", "EventRankingsFragment", mEventKey);
+                    getActivity(), "team@event_click", "EventRankingsFragment", mEventKey);
 
             startActivity(intent);
         });

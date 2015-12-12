@@ -2,10 +2,10 @@ package com.thebluealliance.androidclient.subscribers;
 
 import com.thebluealliance.androidclient.comparators.EventSortByDateComparator;
 import com.thebluealliance.androidclient.helpers.EventHelper;
-import com.thebluealliance.androidclient.types.EventType;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.EventWeekTab;
+import com.thebluealliance.androidclient.types.EventType;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,9 +44,9 @@ public class EventTabSubscriber extends BaseAPISubscriber<List<Event>, List<Even
 
             if (isOffseason ? lastEventMonth != month : lastEventWeek != competitionWeek) {
                 mDataToBind.add(new EventWeekTab(
-                  competitionWeek,
-                  isOffseason ? month : -1,
-                  EventHelper.generateLabelForEvent(event)));
+                        competitionWeek,
+                        isOffseason ? month : -1,
+                        EventHelper.generateLabelForEvent(event)));
 
                 lastEventMonth = month;
                 lastEventWeek = competitionWeek;

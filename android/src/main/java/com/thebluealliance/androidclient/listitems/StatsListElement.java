@@ -1,12 +1,12 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.models.Stat;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.models.Stat;
 
 public class StatsListElement extends ListElement {
 
@@ -94,9 +94,9 @@ public class StatsListElement extends ListElement {
         }
         StatsListElement element = (StatsListElement) o;
         return teamName.equals(element.teamName) &&
-          teamNumber.equals(element.teamNumber) &&
-          opr.equals(element.opr) &&
-          dpr.equals(element.dpr) &&
-          ccwm.equals(element.ccwm);
+                teamNumber.equals(element.teamNumber) &&
+                opr.equals(element.opr) &&
+                dpr.equals(element.dpr) &&
+                ccwm.equals(element.ccwm);
     }
 }

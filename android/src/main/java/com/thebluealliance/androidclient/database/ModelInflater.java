@@ -1,8 +1,5 @@
 package com.thebluealliance.androidclient.database;
 
-import android.database.Cursor;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.database.tables.AwardsTable;
 import com.thebluealliance.androidclient.database.tables.DistrictTeamsTable;
@@ -26,6 +23,9 @@ import com.thebluealliance.androidclient.models.Media;
 import com.thebluealliance.androidclient.models.StoredNotification;
 import com.thebluealliance.androidclient.models.Subscription;
 import com.thebluealliance.androidclient.models.Team;
+
+import android.database.Cursor;
+import android.util.Log;
 
 import java.util.Date;
 

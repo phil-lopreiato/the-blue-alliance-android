@@ -1,12 +1,12 @@
 package com.thebluealliance.androidclient.listeners;
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.View;
-
 import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
 import com.thebluealliance.androidclient.helpers.ModelHelper;
 import com.thebluealliance.androidclient.types.ModelType;
+
+import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 
 /**
  * File created by phil on 8/13/14.

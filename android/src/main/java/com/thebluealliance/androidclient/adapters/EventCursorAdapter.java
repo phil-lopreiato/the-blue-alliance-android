@@ -1,5 +1,9 @@
 package com.thebluealliance.androidclient.adapters;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.database.tables.EventsTable;
+import com.thebluealliance.androidclient.helpers.EventHelper;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -7,10 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.database.tables.EventsTable;
-import com.thebluealliance.androidclient.helpers.EventHelper;
 
 import java.util.Date;
 

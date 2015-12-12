@@ -1,14 +1,15 @@
 package com.thebluealliance.androidclient.gcm;
 
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.Utilities;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+
 import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
-
-import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.Utilities;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
 
 /**
  * File created by phil on 7/27/14.

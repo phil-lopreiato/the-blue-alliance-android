@@ -1,9 +1,8 @@
 package com.thebluealliance.androidclient.subscribers;
 
-import android.content.res.Resources;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+
 import com.thebluealliance.androidclient.Utilities;
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.listitems.ListGroup;
@@ -12,12 +11,14 @@ import com.thebluealliance.androidclient.models.DistrictPointBreakdown;
 import com.thebluealliance.androidclient.models.DistrictTeam;
 import com.thebluealliance.androidclient.models.Event;
 
+import android.content.res.Resources;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class TeamAtDistrictBreakdownSubscriber
-  extends BaseAPISubscriber<DistrictTeam, List<ListGroup>> {
+        extends BaseAPISubscriber<DistrictTeam, List<ListGroup>> {
 
     private Resources mResources;
     private Database mDb;
@@ -38,29 +39,29 @@ public class TeamAtDistrictBreakdownSubscriber
             return;
         }
         Map<String, JsonObject> eventBreakdowns =
-          Utilities.getMapForPlatform(String.class, JsonObject.class);
+                Utilities.getMapForPlatform(String.class, JsonObject.class);
         JsonObject rawDistrictTeam = mGson.fromJson(mAPIData.getJson(), JsonObject.class);
         eventBreakdowns.put(
-          mAPIData.getEvent1Key(),
-          rawDistrictTeam.get("event_points").getAsJsonObject()
-            .get(mAPIData.getEvent1Key()).getAsJsonObject());
+                mAPIData.getEvent1Key(),
+                rawDistrictTeam.get("event_points").getAsJsonObject()
+                        .get(mAPIData.getEvent1Key()).getAsJsonObject());
         eventBreakdowns.put(
-          mAPIData.getEvent2Key(),
-          rawDistrictTeam.get("event_points").getAsJsonObject()
-            .get(mAPIData.getEvent2Key()).getAsJsonObject());
+                mAPIData.getEvent2Key(),
+                rawDistrictTeam.get("event_points").getAsJsonObject()
+                        .get(mAPIData.getEvent2Key()).getAsJsonObject());
         eventBreakdowns.put(
-          mAPIData.getCmpKey(),
-          rawDistrictTeam.get("event_points").getAsJsonObject()
-            .get(mAPIData.getCmpKey()).getAsJsonObject());
+                mAPIData.getCmpKey(),
+                rawDistrictTeam.get("event_points").getAsJsonObject()
+                        .get(mAPIData.getCmpKey()).getAsJsonObject());
 
         for (Map.Entry<String, JsonObject> eventData : eventBreakdowns.entrySet()) {
             Event event = mDb.getEventsTable().get(eventData.getKey());
             ListGroup eventGroup = new ListGroup(event == null ?
-              eventData.getKey() :
-              event.getEventName());
+                    eventData.getKey() :
+                    event.getEventName());
 
             DistrictPointBreakdown breakdown =
-              mGson.fromJson(eventData.getValue(), DistrictPointBreakdown.class);
+                    mGson.fromJson(eventData.getValue(), DistrictPointBreakdown.class);
 
             if (breakdown.getQualPoints() > -1) {
                 eventGroup.children.add(breakdown.renderQualPoints(mResources));

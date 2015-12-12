@@ -1,14 +1,5 @@
 package com.thebluealliance.androidclient.binders;
 
-import android.net.Uri;
-import android.text.Html;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.eventbus.ActionBarTitleEvent;
@@ -19,6 +10,15 @@ import com.thebluealliance.androidclient.listeners.EventInfoContainerClickListen
 import com.thebluealliance.androidclient.listeners.SocialClickListener;
 import com.thebluealliance.androidclient.listitems.MatchListElement;
 import com.thebluealliance.androidclient.renderers.MatchRenderer;
+
+import android.net.Uri;
+import android.text.Html;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import javax.annotation.Nullable;
 import javax.inject.Inject;
@@ -62,8 +62,8 @@ public class EventInfoBinder extends AbstractDataBinder<EventInfoBinder.Model> {
 
     @Inject
     public EventInfoBinder(MatchRenderer renderer,
-      SocialClickListener socialClickListener,
-      EventInfoContainerClickListener eventInfoContainerClickListener) {
+                           SocialClickListener socialClickListener,
+                           EventInfoContainerClickListener eventInfoContainerClickListener) {
         mSocialClickListener = socialClickListener;
         mInfoClickListener = eventInfoContainerClickListener;
         mMatchRenderer = renderer;

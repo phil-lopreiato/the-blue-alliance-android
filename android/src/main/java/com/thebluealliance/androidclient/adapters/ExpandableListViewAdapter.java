@@ -1,15 +1,15 @@
 package com.thebluealliance.androidclient.adapters;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.listitems.ListGroup;
+import com.thebluealliance.androidclient.renderers.ModelRendererSupplier;
+
 import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.listitems.ListGroup;
-import com.thebluealliance.androidclient.renderers.ModelRendererSupplier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +31,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     }
 
     public ExpandableListViewAdapter(
-      Activity activity,
-      ModelRendererSupplier supplier,
-      List<ListGroup> groups) {
+            Activity activity,
+            ModelRendererSupplier supplier,
+            List<ListGroup> groups) {
         mActivity = activity;
         mRendererSupplier = supplier;
         this.groups = groups;
@@ -118,7 +118,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         return groups.get(groupPosition).children.get(childPosition)
-          .render(mRendererSupplier).getView(mActivity, inflater, convertView);
+                .render(mRendererSupplier).getView(mActivity, inflater, convertView);
     }
 }
 

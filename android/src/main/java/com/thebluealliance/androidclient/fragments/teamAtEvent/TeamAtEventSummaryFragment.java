@@ -1,10 +1,5 @@
 package com.thebluealliance.androidclient.fragments.teamAtEvent;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.datafeed.combiners.TeamAtEventSummaryCombiner;
 import com.thebluealliance.androidclient.fragments.ListViewFragment;
@@ -12,10 +7,15 @@ import com.thebluealliance.androidclient.models.NoDataViewParams;
 import com.thebluealliance.androidclient.subscribers.TeamAtEventSummarySubscriber;
 import com.thebluealliance.androidclient.subscribers.TeamAtEventSummarySubscriber.Model;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import rx.Observable;
 
 public class TeamAtEventSummaryFragment
-  extends ListViewFragment<Model, TeamAtEventSummarySubscriber> {
+        extends ListViewFragment<Model, TeamAtEventSummarySubscriber> {
 
     public static final String TEAM_KEY = "team", EVENT_KEY = "event";
 
@@ -61,9 +61,9 @@ public class TeamAtEventSummaryFragment
     @Override
     protected Observable<Model> getObservable(String cacheHeader) {
         return Observable.zip(
-          mDatafeed.fetchTeamAtEventRank(mTeamKey, mEventKey, cacheHeader),
-          mDatafeed.fetchEvent(mEventKey, cacheHeader),
-          new TeamAtEventSummaryCombiner());
+                mDatafeed.fetchTeamAtEventRank(mTeamKey, mEventKey, cacheHeader),
+                mDatafeed.fetchEvent(mEventKey, cacheHeader),
+                new TeamAtEventSummaryCombiner());
     }
 
     @Override

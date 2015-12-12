@@ -1,16 +1,16 @@
 package com.thebluealliance.androidclient.fragments;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.helpers.EventHelper;
 import com.thebluealliance.androidclient.listeners.EventClickListener;
 import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.NoDataViewParams;
 import com.thebluealliance.androidclient.subscribers.EventListSubscriber;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -93,7 +93,7 @@ public class EventListFragment extends ListViewFragment<List<Event>, EventListSu
     }
 
     public void bind() {
-        if(mSubscriber != null) {
+        if (mSubscriber != null) {
             mSubscriber.bindData();
         }
     }

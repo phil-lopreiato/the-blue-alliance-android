@@ -3,23 +3,24 @@ package com.thebluealliance.androidclient.subscribers;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
 import com.thebluealliance.androidclient.binders.ListViewBinder;
 import com.thebluealliance.androidclient.comparators.PointBreakdownComparater;
 import com.thebluealliance.androidclient.database.Database;
-import com.thebluealliance.androidclient.types.DistrictType;
 import com.thebluealliance.androidclient.listitems.ListItem;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.DistrictPointBreakdown;
 import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.Team;
 import com.thebluealliance.androidclient.renderers.DistrictPointBreakdownRenderer;
+import com.thebluealliance.androidclient.types.DistrictType;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-public class DistrictPointsListSubscriber extends BaseAPISubscriber<JsonElement, List<ListItem>>{
+public class DistrictPointsListSubscriber extends BaseAPISubscriber<JsonElement, List<ListItem>> {
 
     private Database mDb;
     private String mEventKey;
@@ -56,7 +57,7 @@ public class DistrictPointsListSubscriber extends BaseAPISubscriber<JsonElement,
         if (event != null) {
             DistrictType type = DistrictType.fromEnum(event.getDistrictEnum());
             boolean isDistrict = type != DistrictType.NO_DISTRICT;
-            ((Type)mDataToBind).isDistrict = isDistrict;
+            ((Type) mDataToBind).isDistrict = isDistrict;
             if (isDistrict) {
                 districtKey = mEventKey.substring(0, 4) + type.getAbbreviation();
             }
@@ -66,8 +67,8 @@ public class DistrictPointsListSubscriber extends BaseAPISubscriber<JsonElement,
         for (Map.Entry<String, JsonElement> teamPoints : points.entrySet()) {
             Team team = mDb.getTeamsTable().get(teamPoints.getKey());
             DistrictPointBreakdown b = mGson.fromJson(
-              teamPoints.getValue(),
-              DistrictPointBreakdown.class);
+                    teamPoints.getValue(),
+                    DistrictPointBreakdown.class);
             b.setTeamKey(teamPoints.getKey());
             b.setTeamName(team != null ? team.getNickname() : "Team " + teamPoints.getKey().substring(3));
             b.setDistrictKey(districtKey);

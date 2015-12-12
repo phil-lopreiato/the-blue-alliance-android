@@ -1,14 +1,15 @@
 package com.thebluealliance.androidclient.models;
 
-import android.util.Log;
-
 import com.google.gson.JsonArray;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.database.tables.TeamsTable;
 import com.thebluealliance.androidclient.gcm.notifications.NotificationTypes;
 import com.thebluealliance.androidclient.helpers.JSONHelper;
 import com.thebluealliance.androidclient.types.ModelType;
+
+import android.util.Log;
 
 public class Team extends BasicModel<Team> {
 

@@ -1,5 +1,10 @@
 package com.thebluealliance.androidclient.binders;
 
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.datafeed.DataConsumer;
+import com.thebluealliance.androidclient.models.NoDataViewParams;
+import com.thebluealliance.androidclient.views.NoDataView;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,17 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.datafeed.DataConsumer;
-import com.thebluealliance.androidclient.models.NoDataViewParams;
-import com.thebluealliance.androidclient.views.NoDataView;
-
 /**
  * A class that takes in input data model and updates views accordingly
  * For now, declare views as public members and set them elsewhere where the view is created
  * (like {@link Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}).
- *
- * @param <T>
  */
 public abstract class AbstractDataBinder<T> implements DataConsumer<T> {
     Activity mActivity;
@@ -38,9 +36,8 @@ public abstract class AbstractDataBinder<T> implements DataConsumer<T> {
 
     /**
      * Call this in {@link Fragment#onCreateView(LayoutInflater, ViewGroup, Bundle)}
-     * @param view
      */
-    public void setRootView(View view){
+    public void setRootView(View view) {
         mRootView = view;
     }
 

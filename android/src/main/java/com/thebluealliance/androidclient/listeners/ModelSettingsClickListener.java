@@ -1,10 +1,10 @@
 package com.thebluealliance.androidclient.listeners;
 
-import android.content.Context;
-import android.view.View;
-
 import com.thebluealliance.androidclient.activities.settings.MyTBAModelSettingsActivity;
 import com.thebluealliance.androidclient.types.ModelType;
+
+import android.content.Context;
+import android.view.View;
 
 public class ModelSettingsClickListener implements View.OnClickListener {
 
@@ -21,6 +21,6 @@ public class ModelSettingsClickListener implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         mContext.startActivity(
-          MyTBAModelSettingsActivity.newInstance(mContext, mModelKey, mModelType));
+                MyTBAModelSettingsActivity.newInstance(mContext, mModelKey, mModelType));
     }
 }

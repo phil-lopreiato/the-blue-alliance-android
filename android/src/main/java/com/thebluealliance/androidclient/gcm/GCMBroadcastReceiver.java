@@ -1,13 +1,13 @@
 package com.thebluealliance.androidclient.gcm;
 
+import com.thebluealliance.androidclient.Constants;
+
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
-
-import com.thebluealliance.androidclient.Constants;
 
 /**
  * Created by Nathan on 7/25/2014.

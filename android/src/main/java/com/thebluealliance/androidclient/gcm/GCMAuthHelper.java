@@ -1,21 +1,21 @@
 package com.thebluealliance.androidclient.gcm;
 
-import android.app.Activity;
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+
+import com.appspot.tbatv_prod_hrd.tbaMobile.TbaMobile;
+import com.appspot.tbatv_prod_hrd.tbaMobile.model.ModelsMobileApiMessagesBaseResponse;
+import com.appspot.tbatv_prod_hrd.tbaMobile.model.ModelsMobileApiMessagesRegistrationRequest;
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.Utilities;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+import com.thebluealliance.androidclient.background.mytba.RegisterGCM;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
-import com.appspot.tbatv_prod_hrd.tbaMobile.TbaMobile;
-import com.appspot.tbatv_prod_hrd.tbaMobile.model.ModelsMobileApiMessagesBaseResponse;
-import com.appspot.tbatv_prod_hrd.tbaMobile.model.ModelsMobileApiMessagesRegistrationRequest;
-import com.google.android.gms.auth.GoogleAuthException;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.Utilities;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
-import com.thebluealliance.androidclient.background.mytba.RegisterGCM;
 
 import java.io.IOException;
 

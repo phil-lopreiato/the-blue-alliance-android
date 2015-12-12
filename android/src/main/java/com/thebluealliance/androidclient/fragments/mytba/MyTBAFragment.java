@@ -1,5 +1,12 @@
 package com.thebluealliance.androidclient.fragments.mytba;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.Utilities;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+import com.thebluealliance.androidclient.activities.MyTBAOnboardingActivity;
+import com.thebluealliance.androidclient.adapters.MyTBAFragmentPagerAdapter;
+import com.thebluealliance.androidclient.views.SlidingTabs;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,13 +16,6 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.Utilities;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
-import com.thebluealliance.androidclient.activities.MyTBAOnboardingActivity;
-import com.thebluealliance.androidclient.adapters.MyTBAFragmentPagerAdapter;
-import com.thebluealliance.androidclient.views.SlidingTabs;
 
 /**
  * File created by phil on 8/2/14.

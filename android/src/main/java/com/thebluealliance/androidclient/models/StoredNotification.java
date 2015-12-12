@@ -1,11 +1,5 @@
 package com.thebluealliance.androidclient.models;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-
 import com.thebluealliance.androidclient.database.DatabaseWriter;
 import com.thebluealliance.androidclient.database.tables.NotificationsTable;
 import com.thebluealliance.androidclient.gcm.notifications.AllianceSelectionNotification;
@@ -17,6 +11,12 @@ import com.thebluealliance.androidclient.gcm.notifications.NotificationTypes;
 import com.thebluealliance.androidclient.gcm.notifications.ScheduleUpdatedNotification;
 import com.thebluealliance.androidclient.gcm.notifications.ScoreNotification;
 import com.thebluealliance.androidclient.gcm.notifications.UpcomingMatchNotification;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import java.util.Date;
 
@@ -124,9 +124,12 @@ public class StoredNotification {
     /**
      * Gets the related renderable notification
      * You can immediately call {@link BaseNotification#getView(Context, LayoutInflater, View)}
+     *
      * @return Appropriate BaseNotification
      */
-    public @Nullable BaseNotification getNotification(DatabaseWriter writer) {
+    public
+    @Nullable
+    BaseNotification getNotification(DatabaseWriter writer) {
         BaseNotification notification;
         String data = getMessageData();
         switch (getType()) {

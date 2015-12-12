@@ -1,8 +1,5 @@
 package com.thebluealliance.androidclient;
 
-import android.support.multidex.MultiDexApplication;
-import android.util.Log;
-
 import com.facebook.stetho.Stetho;
 import com.thebluealliance.androidclient.binders.BinderModule;
 import com.thebluealliance.androidclient.database.writers.DatabaseWriterModule;
@@ -13,6 +10,9 @@ import com.thebluealliance.androidclient.di.components.ApplicationComponent;
 import com.thebluealliance.androidclient.di.components.DaggerApplicationComponent;
 import com.thebluealliance.androidclient.di.components.DaggerDatafeedComponent;
 import com.thebluealliance.androidclient.di.components.DatafeedComponent;
+
+import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
 import javax.inject.Inject;
 
@@ -73,16 +73,16 @@ public class TBAAndroid extends MultiDexApplication {
     public ApplicationComponent getComponent() {
         if (mComponent == null) {
             mComponent = DaggerApplicationComponent.builder()
-              .tBAAndroidModule(getModule())
-              .build();
+                    .tBAAndroidModule(getModule())
+                    .build();
         }
         return mComponent;
     }
 
     private DatafeedComponent getDatafeedComponenet() {
         return DaggerDatafeedComponent.builder()
-          .applicationComponent(getComponent())
-          .datafeedModule(getDatafeedModule())
-          .build();
+                .applicationComponent(getComponent())
+                .datafeedModule(getDatafeedModule())
+                .build();
     }
 }

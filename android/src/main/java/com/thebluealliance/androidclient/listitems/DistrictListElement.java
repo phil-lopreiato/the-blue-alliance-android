@@ -1,18 +1,18 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.listeners.DistrictClickListener;
+import com.thebluealliance.androidclient.listeners.ModelSettingsClickListener;
+import com.thebluealliance.androidclient.models.BasicModel;
+import com.thebluealliance.androidclient.models.District;
+import com.thebluealliance.androidclient.types.DistrictType;
+import com.thebluealliance.androidclient.types.ModelType;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.types.DistrictType;
-import com.thebluealliance.androidclient.types.ModelType;
-import com.thebluealliance.androidclient.listeners.DistrictClickListener;
-import com.thebluealliance.androidclient.listeners.ModelSettingsClickListener;
-import com.thebluealliance.androidclient.models.BasicModel;
-import com.thebluealliance.androidclient.models.District;
 
 public class DistrictListElement extends ListElement {
 
@@ -23,7 +23,7 @@ public class DistrictListElement extends ListElement {
     public final boolean showMyTba;
 
     public DistrictListElement(District district, int numEvents, boolean showMyTba)
-      throws BasicModel.FieldNotDefinedException {
+            throws BasicModel.FieldNotDefinedException {
         super(district.getKey());
         type = DistrictType.fromEnum(district.getEnum());
         key = district.getKey();
@@ -78,8 +78,8 @@ public class DistrictListElement extends ListElement {
         }
         DistrictListElement element = (DistrictListElement) o;
         return type == element.type
-          && numEvents == element.numEvents
-          && key.equals(element.key);
+                && numEvents == element.numEvents
+                && key.equals(element.key);
     }
 
     private static class ViewHolder {

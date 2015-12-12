@@ -1,7 +1,5 @@
 package com.thebluealliance.androidclient.subscribers;
 
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.listitems.DistrictTeamListElement;
@@ -10,11 +8,13 @@ import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.DistrictTeam;
 import com.thebluealliance.androidclient.models.Team;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DistrictRankingsSubscriber
-  extends BaseAPISubscriber<List<DistrictTeam>, List<ListItem>> {
+        extends BaseAPISubscriber<List<DistrictTeam>, List<ListItem>> {
 
     Database mDb;
 
@@ -41,12 +41,12 @@ public class DistrictRankingsSubscriber
                 nickname = "Team " + districtTeam.getTeamKey().substring(3);
             }
             mDataToBind.add(
-              new DistrictTeamListElement(
-                districtTeam.getTeamKey(),
-                districtTeam.getDistrictKey(),
-                nickname,
-                districtTeam.getRank(),
-                districtTeam.getTotalPoints()));
+                    new DistrictTeamListElement(
+                            districtTeam.getTeamKey(),
+                            districtTeam.getDistrictKey(),
+                            nickname,
+                            districtTeam.getRank(),
+                            districtTeam.getTotalPoints()));
         }
     }
 }

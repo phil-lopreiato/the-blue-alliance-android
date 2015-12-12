@@ -1,5 +1,13 @@
 package com.thebluealliance.androidclient.gcm.notifications;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.Utilities;
+import com.thebluealliance.androidclient.activities.RecentNotificationsActivity;
+import com.thebluealliance.androidclient.helpers.JSONHelper;
+
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -7,13 +15,6 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.Utilities;
-import com.thebluealliance.androidclient.activities.RecentNotificationsActivity;
-import com.thebluealliance.androidclient.helpers.JSONHelper;
 
 import java.util.Date;
 

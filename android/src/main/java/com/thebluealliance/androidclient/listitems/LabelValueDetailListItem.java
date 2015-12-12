@@ -1,14 +1,14 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.listeners.TeamAtEventClickListener;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.listeners.TeamAtEventClickListener;
 
 /**
  * File created by phil on 7/26/14.
@@ -32,9 +32,9 @@ public class LabelValueDetailListItem extends ListElement {
         }
         LabelValueDetailListItem element = (LabelValueDetailListItem) o;
         return label.equals(element.label) &&
-          value.equals(element.value) &&
-          key.equals(element.key) &&
-          (listItem == null || listItem.equals(element.listItem));
+                value.equals(element.value) &&
+                key.equals(element.key) &&
+                (listItem == null || listItem.equals(element.listItem));
     }
 
     @Override

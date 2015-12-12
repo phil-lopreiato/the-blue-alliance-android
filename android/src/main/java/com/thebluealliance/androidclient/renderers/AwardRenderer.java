@@ -1,18 +1,18 @@
 package com.thebluealliance.androidclient.renderers;
 
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.datafeed.APICache;
-import com.thebluealliance.androidclient.types.ModelType;
 import com.thebluealliance.androidclient.listitems.AwardListElement;
 import com.thebluealliance.androidclient.listitems.CardedAwardListElement;
 import com.thebluealliance.androidclient.listitems.ListElement;
 import com.thebluealliance.androidclient.models.Award;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Team;
+import com.thebluealliance.androidclient.types.ModelType;
+
+import android.support.annotation.IntDef;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -24,9 +24,11 @@ import javax.inject.Singleton;
 @Singleton
 public class AwardRenderer implements ModelRenderer<Award, AwardRenderer.RenderArgs> {
 
-   @Retention(RetentionPolicy.SOURCE)
-   @IntDef({RENDER_CARDED, RENDER_NONCARDED})
-   public @interface RenderType{}
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({RENDER_CARDED, RENDER_NONCARDED})
+    public @interface RenderType {
+    }
+
     public static final int RENDER_CARDED = 0;
     public static final int RENDER_NONCARDED = 1;
 
@@ -38,22 +40,26 @@ public class AwardRenderer implements ModelRenderer<Award, AwardRenderer.RenderA
     }
 
     @Override
-    public @Nullable ListElement renderFromKey(String key, ModelType type, RenderArgs args) {
+    public
+    @Nullable
+    ListElement renderFromKey(String key, ModelType type, RenderArgs args) {
         return null;
     }
 
     @Override
-    public @Nullable ListElement renderFromModel(Award award, RenderArgs args) {
+    public
+    @Nullable
+    ListElement renderFromModel(Award award, RenderArgs args) {
         try {
             switch (args.renderType) {
                 case RENDER_CARDED:
                     return new CardedAwardListElement(
-                      mDatafeed,
-                      award.getName(),
-                      award.getEventKey(),
-                      award.getWinners(),
-                      args.teams,
-                      args.selectedTeamKey);
+                            mDatafeed,
+                            award.getName(),
+                            award.getEventKey(),
+                            award.getWinners(),
+                            args.teams,
+                            args.selectedTeamKey);
                 case RENDER_NONCARDED:
                     return new AwardListElement(mDatafeed, award.getName(), award.getWinners());
             }
@@ -65,7 +71,8 @@ public class AwardRenderer implements ModelRenderer<Award, AwardRenderer.RenderA
     }
 
     public static class RenderArgs {
-        public final @RenderType int renderType;
+        public final
+        @RenderType int renderType;
         public final Map<String, Team> teams;
         public final String selectedTeamKey;
 

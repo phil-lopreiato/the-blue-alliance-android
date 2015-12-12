@@ -1,7 +1,5 @@
 package com.thebluealliance.androidclient.fragments.district;
 
-import android.os.Bundle;
-
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.Utilities;
 import com.thebluealliance.androidclient.fragments.ListViewFragment;
@@ -9,12 +7,14 @@ import com.thebluealliance.androidclient.models.District;
 import com.thebluealliance.androidclient.models.NoDataViewParams;
 import com.thebluealliance.androidclient.subscribers.DistrictListSubscriber;
 
+import android.os.Bundle;
+
 import java.util.List;
 
 import rx.Observable;
 
 public class DistrictListFragment
-  extends ListViewFragment<List<District>, DistrictListSubscriber> {
+        extends ListViewFragment<List<District>, DistrictListSubscriber> {
 
     public static final String YEAR = "year";
 

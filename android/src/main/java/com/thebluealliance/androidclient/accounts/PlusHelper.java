@@ -1,14 +1,15 @@
 package com.thebluealliance.androidclient.accounts;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
+
 import com.thebluealliance.androidclient.gcm.GCMHelper;
 import com.thebluealliance.androidclient.mytba.MyTbaUpdateService;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 
 /**
  * Created by phil on 11/16/14.

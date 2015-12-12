@@ -1,11 +1,11 @@
 package com.thebluealliance.androidclient.adapters;
 
+import com.thebluealliance.androidclient.fragments.gameday.GamedayTickerFragment;
+import com.thebluealliance.androidclient.fragments.gameday.GamedayWebcastsFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.thebluealliance.androidclient.fragments.gameday.GamedayTickerFragment;
-import com.thebluealliance.androidclient.fragments.gameday.GamedayWebcastsFragment;
 
 /**
  * Created by phil on 3/26/15.

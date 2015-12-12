@@ -1,13 +1,13 @@
 package com.thebluealliance.androidclient.listeners;
 
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.database.Database;
+import com.thebluealliance.androidclient.database.tables.NotificationsTable;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.database.Database;
-import com.thebluealliance.androidclient.database.tables.NotificationsTable;
 
 /**
  * Created by phil on 2/5/15.

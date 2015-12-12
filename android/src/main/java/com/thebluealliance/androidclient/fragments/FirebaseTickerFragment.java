@@ -1,18 +1,5 @@
 package com.thebluealliance.androidclient.fragments;
 
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-
 import com.firebase.client.Firebase;
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.R;
@@ -29,6 +16,19 @@ import com.thebluealliance.androidclient.gcm.notifications.NotificationTypes;
 import com.thebluealliance.androidclient.listitems.ListItem;
 import com.thebluealliance.androidclient.listitems.gameday.GamedayTickerFilterCheckbox;
 import com.thebluealliance.androidclient.models.FirebaseNotification;
+
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -66,7 +66,7 @@ public abstract class FirebaseTickerFragment extends Fragment implements Action1
     private String mFirebaseUrl;
     private int mFirebaseLoadDepth;
 
-    protected  FragmentComponent mComponent;
+    protected FragmentComponent mComponent;
 
     protected abstract void inject();
 
@@ -84,12 +84,12 @@ public abstract class FirebaseTickerFragment extends Fragment implements Action1
         // Delivery will be resumed once the view hierarchy is created
         mFirebaseSubscriber.pauseDelivery();
         mFirebaseSubscriber.getObservable()
-          .filter(childEvent -> childEvent != null && childEvent.eventType == FirebaseChildType.CHILD_ADDED)
-          .map(childEvent1 -> childEvent1.snapshot.getValue(FirebaseNotification.class))
-          .buffer(5)
-          .subscribeOn(Schedulers.io())
-          .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(this);
+                .filter(childEvent -> childEvent != null && childEvent.eventType == FirebaseChildType.CHILD_ADDED)
+                .map(childEvent1 -> childEvent1.snapshot.getValue(FirebaseNotification.class))
+                .buffer(5)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this);
         Firebase.setAndroidContext(getActivity());
         Firebase ticker = new Firebase(mFirebaseUrl);
         ticker.limitToLast(mFirebaseLoadDepth).addChildEventListener(mFirebaseSubscriber);

@@ -1,17 +1,18 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.google.gson.JsonArray;
+
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.interfaces.RenderableModel;
+import com.thebluealliance.androidclient.listeners.TeamAtEventClickListener;
+import com.thebluealliance.androidclient.renderers.ModelRendererSupplier;
+
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
-import com.google.gson.JsonArray;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.interfaces.RenderableModel;
-import com.thebluealliance.androidclient.listeners.TeamAtEventClickListener;
-import com.thebluealliance.androidclient.renderers.ModelRendererSupplier;
 
 /**
  * File created by phil on 6/4/14.
@@ -103,7 +104,7 @@ public class AllianceListElement extends ListElement implements RenderableModel 
         }
         AllianceListElement other = (AllianceListElement) o;
         return number == other.number
-          && teams.equals(other.teams)
-          && eventKey.equals(other.eventKey);
+                && teams.equals(other.teams)
+                && eventKey.equals(other.eventKey);
     }
 }

@@ -1,11 +1,5 @@
 package com.thebluealliance.androidclient.database.tables;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.Utilities;
 import com.thebluealliance.androidclient.database.Database;
@@ -13,6 +7,12 @@ import com.thebluealliance.androidclient.database.ModelInflater;
 import com.thebluealliance.androidclient.database.ModelTable;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Team;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import java.util.List;
 
@@ -64,7 +64,7 @@ public class TeamsTable extends ModelTable<Team> {
             mDb.update(Database.TABLE_SEARCH_TEAMS, cv, Database.SearchTeam.KEY + "=?", new String[]{team.getKey()});
         } catch (BasicModel.FieldNotDefinedException e) {
             Log.e(Constants.LOG_TAG, "Can't insert event search item without the following fields:" +
-              "Database.Events.KEY, Database.Events.YEAR");
+                    "Database.Events.KEY, Database.Events.YEAR");
         }
     }
 
@@ -139,14 +139,14 @@ public class TeamsTable extends ModelTable<Team> {
         String table = getTableName();
         String searchTable = Database.TABLE_SEARCH_TEAMS;
         String rawQuery = "SELECT " + table + ".rowid as '_id',"
-          + table + "." + KEY + ","
-          + table + "." + NUMBER + ","
-          + table + "." + NAME + ","
-          + table + "." + SHORTNAME + ","
-          + table + "." + LOCATION
-          + " FROM " + table
-          + " JOIN  (SELECT " + searchTable + "." + Database.SearchTeam.KEY + " FROM " + searchTable + " WHERE " + Database.SearchTeam.TITLES + " MATCH ?)"
-          + " as 'tempteams' ON tempteams." + Database.SearchEvent.KEY + " = " + table + "." + KEY + " ORDER BY " + NUMBER + " ASC";
+                + table + "." + KEY + ","
+                + table + "." + NUMBER + ","
+                + table + "." + NAME + ","
+                + table + "." + SHORTNAME + ","
+                + table + "." + LOCATION
+                + " FROM " + table
+                + " JOIN  (SELECT " + searchTable + "." + Database.SearchTeam.KEY + " FROM " + searchTable + " WHERE " + Database.SearchTeam.TITLES + " MATCH ?)"
+                + " as 'tempteams' ON tempteams." + Database.SearchEvent.KEY + " = " + table + "." + KEY + " ORDER BY " + NUMBER + " ASC";
         Cursor cursor = mDb.rawQuery(rawQuery, new String[]{query});
 
         if (cursor == null) {

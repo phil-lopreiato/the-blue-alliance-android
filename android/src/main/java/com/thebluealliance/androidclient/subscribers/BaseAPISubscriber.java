@@ -1,11 +1,7 @@
 package com.thebluealliance.androidclient.subscribers;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
-import android.support.annotation.WorkerThread;
-import android.util.Log;
-
 import com.google.android.gms.analytics.Tracker;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.datafeed.APISubscriber;
 import com.thebluealliance.androidclient.datafeed.DataConsumer;
@@ -13,6 +9,11 @@ import com.thebluealliance.androidclient.datafeed.refresh.RefreshController;
 import com.thebluealliance.androidclient.datafeed.retrofit.APIv2;
 import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
 import com.thebluealliance.androidclient.models.BasicModel;
+
+import android.support.annotation.Nullable;
+import android.support.annotation.VisibleForTesting;
+import android.support.annotation.WorkerThread;
+import android.util.Log;
 
 import de.greenrobot.event.EventBus;
 import rx.Observer;
@@ -134,7 +135,9 @@ public abstract class BaseAPISubscriber<APIType, BindType>
     }
 
     @Override
-    public @Nullable BindType getBoundData() {
+    public
+    @Nullable
+    BindType getBoundData() {
         return mDataToBind;
     }
 
@@ -143,7 +146,9 @@ public abstract class BaseAPISubscriber<APIType, BindType>
         mAPIData = data;
     }
 
-    public @Nullable APIType getApiData() {
+    public
+    @Nullable
+    APIType getApiData() {
         return mAPIData;
     }
 
@@ -171,6 +176,7 @@ public abstract class BaseAPISubscriber<APIType, BindType>
             hasBinderBoundViews = true;
         }
     }
+
     /**
      * Post {@link #mAPIData} to the given {@link EventBus}
      */

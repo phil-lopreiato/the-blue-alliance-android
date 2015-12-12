@@ -1,5 +1,21 @@
 package com.thebluealliance.androidclient.fragments;
 
+import com.google.android.gms.plus.model.people.Person;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+import com.squareup.picasso.Transformation;
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+import com.thebluealliance.androidclient.accounts.PlusHelper;
+import com.thebluealliance.androidclient.activities.NavigationDrawerActivity;
+import com.thebluealliance.androidclient.adapters.NavigationDrawerAdapter;
+import com.thebluealliance.androidclient.listitems.DividerListItem;
+import com.thebluealliance.androidclient.listitems.ListItem;
+import com.thebluealliance.androidclient.listitems.NavDrawerItem;
+import com.thebluealliance.androidclient.listitems.SpacerListItem;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -32,21 +48,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.google.android.gms.plus.model.people.Person;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-import com.squareup.picasso.Transformation;
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
-import com.thebluealliance.androidclient.accounts.PlusHelper;
-import com.thebluealliance.androidclient.activities.NavigationDrawerActivity;
-import com.thebluealliance.androidclient.adapters.NavigationDrawerAdapter;
-import com.thebluealliance.androidclient.listitems.DividerListItem;
-import com.thebluealliance.androidclient.listitems.ListItem;
-import com.thebluealliance.androidclient.listitems.NavDrawerItem;
-import com.thebluealliance.androidclient.listitems.SpacerListItem;
 
 import java.util.ArrayList;
 import java.util.List;

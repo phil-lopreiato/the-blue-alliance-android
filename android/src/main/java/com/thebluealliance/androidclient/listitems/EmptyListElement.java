@@ -1,11 +1,11 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
 
 /**
  * Created by Nathan on 6/14/2014.

@@ -1,11 +1,5 @@
 package com.thebluealliance.androidclient.database.tables;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.Utilities;
 import com.thebluealliance.androidclient.database.Database;
@@ -13,6 +7,12 @@ import com.thebluealliance.androidclient.database.ModelInflater;
 import com.thebluealliance.androidclient.database.ModelTable;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Event;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import java.util.List;
 
@@ -73,7 +73,7 @@ public class EventsTable extends ModelTable<Event> {
             mDb.update(Database.TABLE_SEARCH_EVENTS, cv, Database.SearchEvent.KEY + "=?", new String[]{event.getKey()});
         } catch (BasicModel.FieldNotDefinedException e) {
             Log.e(Constants.LOG_TAG, "Can't insert event search item without the following fields:" +
-              "Database.Events.KEY, Database.Events.YEAR");
+                    "Database.Events.KEY, Database.Events.YEAR");
         }
     }
 
@@ -131,20 +131,20 @@ public class EventsTable extends ModelTable<Event> {
         String table = getTableName();
         String searchTable = Database.TABLE_SEARCH_EVENTS;
         String rawQuery = "SELECT " + table + ".rowid as '_id',"
-            + table + "." + KEY + ","
-            + table + "." + NAME + ","
-            + table + "." + SHORTNAME + ","
-            + table + "." + TYPE + ","
-            + table + "." + DISTRICT + ","
-            + table + "." + START + ","
-            + table + "." + END + ","
-            + table + "." + LOCATION + ","
-            + table + "." + VENUE + ","
-            + table + "." + OFFICIAL + ","
-            + table + "." + DISTRICT_STRING
-            + " FROM " + getTableName()
-            + " JOIN (SELECT " + searchTable + "." + Database.SearchEvent.KEY + " FROM " + searchTable + " WHERE " + searchTable + "." + Database.SearchEvent.TITLES + " MATCH ?)" +
-            " as 'tempevents' ON tempevents." +Database.SearchEvent.KEY+ " = " + table + "." + KEY + " ORDER BY " + table + "." + YEAR + " DESC";
+                + table + "." + KEY + ","
+                + table + "." + NAME + ","
+                + table + "." + SHORTNAME + ","
+                + table + "." + TYPE + ","
+                + table + "." + DISTRICT + ","
+                + table + "." + START + ","
+                + table + "." + END + ","
+                + table + "." + LOCATION + ","
+                + table + "." + VENUE + ","
+                + table + "." + OFFICIAL + ","
+                + table + "." + DISTRICT_STRING
+                + " FROM " + getTableName()
+                + " JOIN (SELECT " + searchTable + "." + Database.SearchEvent.KEY + " FROM " + searchTable + " WHERE " + searchTable + "." + Database.SearchEvent.TITLES + " MATCH ?)" +
+                " as 'tempevents' ON tempevents." + Database.SearchEvent.KEY + " = " + table + "." + KEY + " ORDER BY " + table + "." + YEAR + " DESC";
         Cursor cursor = mDb.rawQuery(rawQuery, new String[]{query});
 
         if (cursor == null) {

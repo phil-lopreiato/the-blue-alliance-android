@@ -1,5 +1,18 @@
 package com.thebluealliance.androidclient.activities;
 
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.NfcUris;
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.TBAAndroid;
+import com.thebluealliance.androidclient.di.components.DaggerFragmentComponent;
+import com.thebluealliance.androidclient.di.components.FragmentComponent;
+import com.thebluealliance.androidclient.di.components.HasFragmentComponent;
+import com.thebluealliance.androidclient.eventbus.ActionBarTitleEvent;
+import com.thebluealliance.androidclient.fragments.match.MatchInfoFragment;
+import com.thebluealliance.androidclient.listeners.ClickListenerModule;
+import com.thebluealliance.androidclient.subscribers.SubscriberModule;
+import com.thebluealliance.androidclient.types.ModelType;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,21 +26,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.NfcUris;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.TBAAndroid;
-import com.thebluealliance.androidclient.di.components.DaggerFragmentComponent;
-import com.thebluealliance.androidclient.di.components.FragmentComponent;
-import com.thebluealliance.androidclient.di.components.HasFragmentComponent;
-import com.thebluealliance.androidclient.eventbus.ActionBarTitleEvent;
-import com.thebluealliance.androidclient.fragments.match.MatchInfoFragment;
-import com.thebluealliance.androidclient.types.ModelType;
-import com.thebluealliance.androidclient.listeners.ClickListenerModule;
-import com.thebluealliance.androidclient.subscribers.SubscriberModule;
-
 public class ViewMatchActivity extends FABNotificationSettingsActivity
-  implements HasFragmentComponent {
+        implements HasFragmentComponent {
 
     public static final String MATCH_KEY = "match_key";
 
@@ -59,7 +59,7 @@ public class ViewMatchActivity extends FABNotificationSettingsActivity
 
         MatchInfoFragment matchInfoFragment = MatchInfoFragment.newInstance(mMatchKey);
         getSupportFragmentManager().beginTransaction()
-          .add(R.id.match_info_fragment_container, matchInfoFragment).commit();
+                .add(R.id.match_info_fragment_container, matchInfoFragment).commit();
 
         mWarningMessage = (TextView) findViewById(R.id.warning_container);
     }
@@ -78,7 +78,7 @@ public class ViewMatchActivity extends FABNotificationSettingsActivity
 
         MatchInfoFragment matchInfoFragment = MatchInfoFragment.newInstance(mMatchKey);
         getSupportFragmentManager().beginTransaction()
-          .replace(R.id.match_info_fragment_container, matchInfoFragment).commit();
+                .replace(R.id.match_info_fragment_container, matchInfoFragment).commit();
     }
 
     @Override
@@ -161,13 +161,13 @@ public class ViewMatchActivity extends FABNotificationSettingsActivity
         if (mComponent == null) {
             TBAAndroid application = ((TBAAndroid) getApplication());
             mComponent = DaggerFragmentComponent.builder()
-              .applicationComponent(application.getComponent())
-              .datafeedModule(application.getDatafeedModule())
-              .binderModule(application.getBinderModule())
-              .databaseWriterModule(application.getDatabaseWriterModule())
-              .subscriberModule(new SubscriberModule(this))
-              .clickListenerModule(new ClickListenerModule(this))
-              .build();
+                    .applicationComponent(application.getComponent())
+                    .datafeedModule(application.getDatafeedModule())
+                    .binderModule(application.getBinderModule())
+                    .databaseWriterModule(application.getDatabaseWriterModule())
+                    .subscriberModule(new SubscriberModule(this))
+                    .clickListenerModule(new ClickListenerModule(this))
+                    .build();
         }
         return mComponent;
     }

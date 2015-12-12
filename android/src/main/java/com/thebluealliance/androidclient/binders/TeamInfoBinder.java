@@ -1,5 +1,9 @@
 package com.thebluealliance.androidclient.binders;
 
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.listeners.SocialClickListener;
+
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.text.Spannable;
@@ -8,10 +12,6 @@ import android.text.style.TextAppearanceSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.listeners.SocialClickListener;
 
 import javax.inject.Inject;
 

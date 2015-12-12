@@ -1,15 +1,15 @@
 package com.thebluealliance.androidclient.adapters;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.thebluealliance.androidclient.interfaces.RenderableModel;
 import com.thebluealliance.androidclient.listitems.LabelValueListItem;
 import com.thebluealliance.androidclient.listitems.ListGroup;
 import com.thebluealliance.androidclient.listitems.ListItem;
 import com.thebluealliance.androidclient.models.Match;
 import com.thebluealliance.androidclient.renderers.ModelRendererSupplier;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -21,10 +21,10 @@ public class MatchListAdapter extends ExpandableListViewAdapter {
     private String mTeamKey;
 
     public MatchListAdapter(
-      Activity a,
-      ModelRendererSupplier supplier,
-      List<ListGroup> groups,
-      String selectedTeam) {
+            Activity a,
+            ModelRendererSupplier supplier,
+            List<ListGroup> groups,
+            String selectedTeam) {
         super(a, supplier, groups);
         mTeamKey = selectedTeam;
     }

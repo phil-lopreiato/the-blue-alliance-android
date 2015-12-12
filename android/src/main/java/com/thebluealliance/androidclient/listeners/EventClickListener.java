@@ -1,11 +1,5 @@
 package com.thebluealliance.androidclient.listeners;
 
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.activities.TeamAtEventActivity;
 import com.thebluealliance.androidclient.activities.ViewEventActivity;
@@ -14,6 +8,12 @@ import com.thebluealliance.androidclient.fragments.mytba.MyFavoritesFragment;
 import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
 import com.thebluealliance.androidclient.helpers.EventTeamHelper;
 import com.thebluealliance.androidclient.listitems.ListElement;
+
+import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 
 public class EventClickListener implements AdapterView.OnItemClickListener, View.OnClickListener {
 

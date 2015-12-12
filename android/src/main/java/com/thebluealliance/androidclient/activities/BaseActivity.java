@@ -1,5 +1,16 @@
 package com.thebluealliance.androidclient.activities;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+import com.thebluealliance.androidclient.accounts.PlusHelper;
+import com.thebluealliance.androidclient.gcm.GCMHelper;
+import com.thebluealliance.androidclient.listeners.NotificationDismissedListener;
+import com.thebluealliance.androidclient.mytba.MyTbaUpdateService;
+import com.thebluealliance.androidclient.types.ModelType;
+
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,16 +23,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
-import com.thebluealliance.androidclient.accounts.PlusHelper;
-import com.thebluealliance.androidclient.gcm.GCMHelper;
-import com.thebluealliance.androidclient.listeners.NotificationDismissedListener;
-import com.thebluealliance.androidclient.mytba.MyTbaUpdateService;
-import com.thebluealliance.androidclient.types.ModelType;
 
 /**
  * Provides the features that should be in every activity in the app: a navigation drawer, a search
@@ -139,7 +140,8 @@ public abstract class BaseActivity extends NavigationDrawerActivity
     }
 
     /**
-     * Connection failed for some reason (called by PlusClient) Try and resolve the result.  Failure
+     * Connection failed for some reason (called by PlusClient) Try and resolve the result.
+     * Failure
      * here is usually not an indication of a serious error, just that the user's input is needed.
      */
     @Override

@@ -1,17 +1,5 @@
 package com.thebluealliance.androidclient.activities;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.Uri;
-import android.nfc.NdefMessage;
-import android.nfc.NfcAdapter;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.preference.PreferenceManager;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.BuildConfig;
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.NfcUris;
@@ -24,6 +12,18 @@ import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.datafeed.status.TBAStatusController;
 import com.thebluealliance.androidclient.di.components.DaggerDatafeedComponent;
 import com.thebluealliance.androidclient.di.components.DatafeedComponent;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.nfc.NdefMessage;
+import android.nfc.NfcAdapter;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.preference.PreferenceManager;
+import android.support.v4.app.TaskStackBuilder;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -94,8 +94,8 @@ public class LaunchActivity extends AppCompatActivity {
         if (lastVersion == -1 && !prefs.getBoolean(Constants.ALL_DATA_LOADED_KEY, false)) {
             // on a clean install, don't think we're updating
             prefs.edit()
-              .putInt(Constants.APP_VERSION_KEY, BuildConfig.VERSION_CODE)
-              .putInt(Constants.LAST_YEAR_KEY, maxYear).apply();
+                    .putInt(Constants.APP_VERSION_KEY, BuildConfig.VERSION_CODE)
+                    .putInt(Constants.LAST_YEAR_KEY, maxYear).apply();
             return false;
         }
 
@@ -136,7 +136,7 @@ public class LaunchActivity extends AppCompatActivity {
         }
 
         // If the max year is increased, redownload all data for updates
-        if (prefs.contains(Constants.LAST_YEAR_KEY) && lastYear < maxYear){
+        if (prefs.contains(Constants.LAST_YEAR_KEY) && lastYear < maxYear) {
             redownload = true;
             intent.putExtra(LoadTBAData.DATA_TO_LOAD, new short[]{LoadTBAData.LOAD_EVENTS, LoadTBAData.LOAD_TEAMS, LoadTBAData.LOAD_DISTRICTS});
         }
@@ -144,8 +144,8 @@ public class LaunchActivity extends AppCompatActivity {
         // If we don't have to redownload, store the version code here. Otherwise, let the
         // RedownloadActivity store the version code upon completion
         prefs.edit()
-          .putInt(Constants.APP_VERSION_KEY, BuildConfig.VERSION_CODE)
-          .putInt(Constants.LAST_YEAR_KEY, maxYear).apply();
+                .putInt(Constants.APP_VERSION_KEY, BuildConfig.VERSION_CODE)
+                .putInt(Constants.LAST_YEAR_KEY, maxYear).apply();
         return redownload;
     }
 
@@ -219,8 +219,8 @@ public class LaunchActivity extends AppCompatActivity {
     private DatafeedComponent getComponenet() {
         TBAAndroid application = ((TBAAndroid) getApplication());
         return DaggerDatafeedComponent.builder()
-          .applicationComponent(application.getComponent())
-          .datafeedModule(application.getDatafeedModule())
-          .build();
+                .applicationComponent(application.getComponent())
+                .datafeedModule(application.getDatafeedModule())
+                .build();
     }
 }

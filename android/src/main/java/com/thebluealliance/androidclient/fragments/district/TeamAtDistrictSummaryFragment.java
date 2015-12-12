@@ -1,10 +1,5 @@
 package com.thebluealliance.androidclient.fragments.district;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.fragments.ListViewFragment;
 import com.thebluealliance.androidclient.helpers.DistrictHelper;
@@ -12,10 +7,15 @@ import com.thebluealliance.androidclient.models.DistrictTeam;
 import com.thebluealliance.androidclient.models.NoDataViewParams;
 import com.thebluealliance.androidclient.subscribers.TeamAtDistrictSummarySubscriber;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import rx.Observable;
 
 public class TeamAtDistrictSummaryFragment
-  extends ListViewFragment<DistrictTeam, TeamAtDistrictSummarySubscriber> {
+        extends ListViewFragment<DistrictTeam, TeamAtDistrictSummarySubscriber> {
 
     public static final String DISTRICT = "districtKey", TEAM = "teamKey";
 

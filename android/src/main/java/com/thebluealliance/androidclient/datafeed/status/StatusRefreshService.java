@@ -1,11 +1,5 @@
 package com.thebluealliance.androidclient.datafeed.status;
 
-import android.app.IntentService;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.annotation.WorkerThread;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.BuildConfig;
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.TBAAndroid;
@@ -14,6 +8,12 @@ import com.thebluealliance.androidclient.datafeed.retrofit.APIv2;
 import com.thebluealliance.androidclient.di.components.DaggerDatafeedComponent;
 import com.thebluealliance.androidclient.di.components.DatafeedComponent;
 import com.thebluealliance.androidclient.models.APIStatus;
+
+import android.app.IntentService;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.support.annotation.WorkerThread;
+import android.util.Log;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,7 +27,9 @@ import rx.schedulers.Schedulers;
  */
 public class StatusRefreshService extends IntentService {
 
-    @Inject @Named("retrofit") APIv2 mRetrofitAPI;
+    @Inject
+    @Named("retrofit")
+    APIv2 mRetrofitAPI;
     @Inject SharedPreferences mPrefs;
     @Inject EventBus mEventBus;
 
@@ -51,23 +53,23 @@ public class StatusRefreshService extends IntentService {
     private void updateTbaStatus() {
         Response<APIStatus> response = null;
         try {
-             response = mRetrofitAPI.status().toBlocking().first();
-        } catch(Exception ex) {
+            response = mRetrofitAPI.status().toBlocking().first();
+        } catch (Exception ex) {
             Log.w(Constants.LOG_TAG, "Error updating TBA status");
             ex.printStackTrace();
             return;
         }
         if (!response.isSuccess()) {
-            Log.w(Constants.LOG_TAG, "Unable to update myTBA Status\n"+
-              response.code() + " " +response.message());
+            Log.w(Constants.LOG_TAG, "Unable to update myTBA Status\n" +
+                    response.code() + " " + response.message());
             return;
         }
         APIStatus status = response.body();
 
         /* Write the new data to shared prefs */
         mPrefs.edit()
-          .putString(TBAStatusController.STATUS_PREF_KEY, status.getJsonBlob())
-          .apply();
+                .putString(TBAStatusController.STATUS_PREF_KEY, status.getJsonBlob())
+                .apply();
 
         /* Post the update to the EventBus */
         mEventBus.post(status);
@@ -78,10 +80,10 @@ public class StatusRefreshService extends IntentService {
     }
 
     private DatafeedComponent getComponenet() {
-            TBAAndroid application = ((TBAAndroid) getApplication());
-            return DaggerDatafeedComponent.builder()
-              .applicationComponent(application.getComponent())
-              .datafeedModule(application.getDatafeedModule())
-              .build();
+        TBAAndroid application = ((TBAAndroid) getApplication());
+        return DaggerDatafeedComponent.builder()
+                .applicationComponent(application.getComponent())
+                .datafeedModule(application.getDatafeedModule())
+                .build();
     }
 }

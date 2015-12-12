@@ -1,7 +1,5 @@
 package com.thebluealliance.androidclient.helpers;
 
-import android.util.Log;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -9,9 +7,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.datafeed.deserializers.AwardDeserializer;
-import com.thebluealliance.androidclient.datafeed.deserializers.DistrictDeserializer;
 import com.thebluealliance.androidclient.datafeed.deserializers.DistrictTeamDeserializer;
 import com.thebluealliance.androidclient.datafeed.deserializers.EventDeserializer;
 import com.thebluealliance.androidclient.datafeed.deserializers.MatchDeserializer;
@@ -19,13 +17,14 @@ import com.thebluealliance.androidclient.datafeed.deserializers.MediaDeserialize
 import com.thebluealliance.androidclient.datafeed.deserializers.TeamDeserializer;
 import com.thebluealliance.androidclient.datafeed.deserializers.TeamDistrictPointsDeserializer;
 import com.thebluealliance.androidclient.models.Award;
-import com.thebluealliance.androidclient.models.District;
 import com.thebluealliance.androidclient.models.DistrictPointBreakdown;
 import com.thebluealliance.androidclient.models.DistrictTeam;
 import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.Match;
 import com.thebluealliance.androidclient.models.Media;
 import com.thebluealliance.androidclient.models.Team;
+
+import android.util.Log;
 
 /**
  * File created by phil on 4/22/14.

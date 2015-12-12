@@ -1,14 +1,5 @@
 package com.thebluealliance.androidclient.database;
 
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteQueryBuilder;
-import android.os.Build;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.database.tables.AwardsTable;
 import com.thebluealliance.androidclient.database.tables.DistrictTeamsTable;
@@ -22,6 +13,15 @@ import com.thebluealliance.androidclient.database.tables.NotificationsTable;
 import com.thebluealliance.androidclient.database.tables.SubscriptionsTable;
 import com.thebluealliance.androidclient.database.tables.TeamsTable;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.os.Build;
+import android.preference.PreferenceManager;
+import android.util.Log;
+
 import java.util.Map;
 
 
@@ -34,7 +34,8 @@ public class Database extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 29;
     private Context context;
     public static final String DATABASE_NAME = "the-blue-alliance-android-database";
-    public static final @Deprecated String TABLE_API = "api";
+    public static final
+    @Deprecated String TABLE_API = "api";
     public static final String TABLE_TEAMS = "teams",
             TABLE_EVENTS = "events",
             TABLE_AWARDS = "awards",

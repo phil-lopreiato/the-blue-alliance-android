@@ -1,5 +1,8 @@
 package com.thebluealliance.androidclient.adapters;
 
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.database.tables.TeamsTable;
+
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -8,9 +11,6 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.database.tables.TeamsTable;
-
 /**
  * A class that adapts a cursor retrieved from {@link TeamsTable#getForSearchQuery(String)} and
  * binds it to views
@@ -18,7 +18,8 @@ import com.thebluealliance.androidclient.database.tables.TeamsTable;
  * WARNING: TERRIBLE HACKS WITHIN
  * For some reason, I was having trouble getting the returned cursor to get the right column index
  * from a column name (would always return -1/not found), so the indexes are just directly done
- */public class TeamCursorAdapter extends CursorAdapter {
+ */
+public class TeamCursorAdapter extends CursorAdapter {
 
     public String getKey(int position) {
         Cursor c = getCursor();

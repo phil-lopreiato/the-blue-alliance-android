@@ -1,14 +1,15 @@
 package com.thebluealliance.androidclient.activities;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.thebluealliance.androidclient.accounts.PlusHelper;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.thebluealliance.androidclient.accounts.PlusHelper;
 
 /**
  * A base class to wrap communication with the Google Play Services PlusClient.
@@ -143,7 +144,8 @@ public abstract class PlusBaseActivity extends Activity
     }
 
     /**
-     * An earlier connection failed, and we're now receiving the result of the resolution attempt by
+     * An earlier connection failed, and we're now receiving the result of the resolution attempt
+     * by
      * PlusClient.
      *
      * @see #onConnectionFailed(ConnectionResult)
@@ -186,7 +188,8 @@ public abstract class PlusBaseActivity extends Activity
     }
 
     /**
-     * Connection failed for some reason (called by PlusClient) Try and resolve the result.  Failure
+     * Connection failed for some reason (called by PlusClient) Try and resolve the result.
+     * Failure
      * here is usually not an indication of a serious error, just that the user's input is needed.
      *
      * @see #onActivityResult(int, int, Intent)

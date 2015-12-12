@@ -1,9 +1,9 @@
 package com.thebluealliance.androidclient.gcm.messages;
 
+import com.thebluealliance.androidclient.gcm.GCMHelper;
+
 import android.content.Context;
 import android.os.Bundle;
-
-import com.thebluealliance.androidclient.gcm.GCMHelper;
 
 /**
  * File created by phil on 7/27/14.

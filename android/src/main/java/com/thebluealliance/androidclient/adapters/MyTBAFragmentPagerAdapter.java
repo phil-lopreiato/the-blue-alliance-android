@@ -1,12 +1,12 @@
 package com.thebluealliance.androidclient.adapters;
 
 
+import com.thebluealliance.androidclient.fragments.mytba.MyFavoritesFragment;
+import com.thebluealliance.androidclient.fragments.mytba.MySubscriptionsFragment;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import com.thebluealliance.androidclient.fragments.mytba.MyFavoritesFragment;
-import com.thebluealliance.androidclient.fragments.mytba.MySubscriptionsFragment;
 
 /**
  * File created by phil on 8/2/14.

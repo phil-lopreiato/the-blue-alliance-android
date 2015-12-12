@@ -1,15 +1,7 @@
 package com.thebluealliance.androidclient.fragments;
 
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.common.base.Preconditions;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.Utilities;
@@ -21,6 +13,15 @@ import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.EventWeekTab;
 import com.thebluealliance.androidclient.subscribers.EventTabSubscriber;
 import com.thebluealliance.androidclient.views.SlidingTabs;
+
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.List;
 
@@ -191,13 +192,13 @@ public class EventsByWeekFragment
      */
     private int getIndexForWeek(int week) {
         Preconditions.checkState(
-          mViewPager.getAdapter() instanceof EventsByWeekFragmentPagerAdapter,
-          "EventsByWeekFragment must use EventsByWeekFragmentPagerAdapter");
+                mViewPager.getAdapter() instanceof EventsByWeekFragmentPagerAdapter,
+                "EventsByWeekFragment must use EventsByWeekFragmentPagerAdapter");
         List<EventWeekTab> tabs = ((EventsByWeekFragmentPagerAdapter) mViewPager.getAdapter())
                 .getTabs();
         for (int i = 0; i < tabs.size(); i++) {
             if (tabs.get(i).getWeek() > week) {
-                return i-1;
+                return i - 1;
             }
         }
         return -1;

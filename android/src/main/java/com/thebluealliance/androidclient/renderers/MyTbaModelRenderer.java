@@ -1,11 +1,7 @@
 package com.thebluealliance.androidclient.renderers;
 
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
-
 import com.thebluealliance.androidclient.datafeed.APICache;
 import com.thebluealliance.androidclient.helpers.EventTeamHelper;
-import com.thebluealliance.androidclient.types.ModelType;
 import com.thebluealliance.androidclient.listitems.DistrictListElement;
 import com.thebluealliance.androidclient.listitems.ListElement;
 import com.thebluealliance.androidclient.listitems.ModelListElement;
@@ -13,6 +9,10 @@ import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Event;
 import com.thebluealliance.androidclient.models.Match;
 import com.thebluealliance.androidclient.models.Team;
+import com.thebluealliance.androidclient.types.ModelType;
+
+import android.support.annotation.Nullable;
+import android.support.annotation.WorkerThread;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -28,11 +28,11 @@ public class MyTbaModelRenderer implements ModelRenderer<Void, Void> {
 
     @Inject
     public MyTbaModelRenderer(
-      APICache datafeed,
-      EventRenderer eventRenderer,
-      TeamRenderer teamRenderer,
-      MatchRenderer matchRenderer,
-      DistrictRenderer districtRenderer) {
+            APICache datafeed,
+            EventRenderer eventRenderer,
+            TeamRenderer teamRenderer,
+            MatchRenderer matchRenderer,
+            DistrictRenderer districtRenderer) {
         mDatafeed = datafeed;
         mEventRenderer = eventRenderer;
         mTeamRenderer = teamRenderer;
@@ -40,8 +40,11 @@ public class MyTbaModelRenderer implements ModelRenderer<Void, Void> {
         mDistrictRenderer = districtRenderer;
     }
 
-    @WorkerThread @Override
-    public @Nullable ListElement renderFromKey(String key, ModelType type, Void args) {
+    @WorkerThread
+    @Override
+    public
+    @Nullable
+    ListElement renderFromKey(String key, ModelType type, Void args) {
         String text;
         try {
             switch (type) {
@@ -73,15 +76,15 @@ public class MyTbaModelRenderer implements ModelRenderer<Void, Void> {
                         return new ModelListElement(text, key, type);
                     }
                     text = String.format("%1$s @ %2$d %3$s",
-                      eTeam.getNickname(),
-                      eEvent.getEventYear(),
-                      eEvent.getEventShortName());
+                            eTeam.getNickname(),
+                            eEvent.getEventYear(),
+                            eEvent.getEventShortName());
                     return new ModelListElement(text, key, type);
                 case DISTRICT:
                     DistrictListElement element = mDistrictRenderer.renderFromKey(
-                      key,
-                      ModelType.DISTRICT,
-                      new DistrictRenderer.RenderArgs(0, true));
+                            key,
+                            ModelType.DISTRICT,
+                            new DistrictRenderer.RenderArgs(0, true));
                     if (element == null) {
                         return new ModelListElement(key, key, type);
                     }
@@ -99,7 +102,9 @@ public class MyTbaModelRenderer implements ModelRenderer<Void, Void> {
      * Not needed for mytba
      */
     @Override
-    public @Nullable ListElement renderFromModel(Void aVoid, Void a2void) {
+    public
+    @Nullable
+    ListElement renderFromModel(Void aVoid, Void a2void) {
         return null;
     }
 }

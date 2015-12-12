@@ -1,5 +1,18 @@
 package com.thebluealliance.androidclient.activities;
 
+import com.thebluealliance.androidclient.BuildConfig;
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.TBAAndroid;
+import com.thebluealliance.androidclient.adapters.FirstLaunchPagerAdapter;
+import com.thebluealliance.androidclient.background.LoadTBADataTaskFragment;
+import com.thebluealliance.androidclient.background.firstlaunch.LoadTBAData;
+import com.thebluealliance.androidclient.di.components.DaggerDatafeedComponent;
+import com.thebluealliance.androidclient.di.components.DatafeedComponent;
+import com.thebluealliance.androidclient.di.components.HasDatafeedComponent;
+import com.thebluealliance.androidclient.helpers.ConnectionDetector;
+import com.thebluealliance.androidclient.views.DisableSwipeViewPager;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -19,24 +32,11 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.thebluealliance.androidclient.BuildConfig;
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.TBAAndroid;
-import com.thebluealliance.androidclient.adapters.FirstLaunchPagerAdapter;
-import com.thebluealliance.androidclient.background.LoadTBADataTaskFragment;
-import com.thebluealliance.androidclient.background.firstlaunch.LoadTBAData;
-import com.thebluealliance.androidclient.di.components.DaggerDatafeedComponent;
-import com.thebluealliance.androidclient.di.components.DatafeedComponent;
-import com.thebluealliance.androidclient.di.components.HasDatafeedComponent;
-import com.thebluealliance.androidclient.helpers.ConnectionDetector;
-import com.thebluealliance.androidclient.views.DisableSwipeViewPager;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class RedownloadActivity extends AppCompatActivity
-  implements View.OnClickListener, LoadTBAData.LoadTBADataCallbacks, HasDatafeedComponent {
+        implements View.OnClickListener, LoadTBAData.LoadTBADataCallbacks, HasDatafeedComponent {
 
     private static final String CURRENT_LOADING_MESSAGE_KEY = "current_loading_message";
     private static final String LOADING_COMPLETE = "loading_complete";
@@ -330,9 +330,9 @@ public class RedownloadActivity extends AppCompatActivity
         if (mComponent == null) {
             TBAAndroid application = ((TBAAndroid) getApplication());
             mComponent = DaggerDatafeedComponent.builder()
-              .applicationComponent(application.getComponent())
-              .datafeedModule(application.getDatafeedModule())
-              .build();
+                    .applicationComponent(application.getComponent())
+                    .datafeedModule(application.getDatafeedModule())
+                    .build();
         }
         return mComponent;
     }

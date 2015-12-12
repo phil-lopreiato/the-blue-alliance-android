@@ -1,12 +1,12 @@
 package com.thebluealliance.androidclient.database.tables;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.database.ModelInflater;
 import com.thebluealliance.androidclient.database.ModelTable;
 import com.thebluealliance.androidclient.models.Match;
+
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,7 @@ public class MatchesTable extends ModelTable<Match> {
 
     private SQLiteDatabase mDb;
 
-    public MatchesTable(SQLiteDatabase db){
+    public MatchesTable(SQLiteDatabase db) {
         super(db);
         this.mDb = db;
     }
@@ -45,7 +45,7 @@ public class MatchesTable extends ModelTable<Match> {
 
     public List<Match> getTeamAtEventMatches(String teamKey, String eventKey) {
         Cursor cursor = mDb.rawQuery("SELECT * FROM `" + Database.TABLE_MATCHES + "` WHERE `" + EVENT
-          + "` = ? AND `" + ALLIANCES + "` LIKE '%" + teamKey + "," + "%'", new String[]{eventKey});
+                + "` = ? AND `" + ALLIANCES + "` LIKE '%" + teamKey + "," + "%'", new String[]{eventKey});
         List<Match> models = new ArrayList<>(cursor == null ? 0 : cursor.getCount());
         if (cursor == null || !cursor.moveToFirst()) {
             return models;

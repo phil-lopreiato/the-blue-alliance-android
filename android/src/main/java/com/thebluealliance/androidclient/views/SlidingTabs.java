@@ -1,10 +1,10 @@
 package com.thebluealliance.androidclient.views;
 
+import com.thebluealliance.androidclient.R;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
-
-import com.thebluealliance.androidclient.R;
 
 /**
  * Created by Nathan on 10/25/2014.

@@ -1,19 +1,20 @@
 package com.thebluealliance.androidclient.models;
 
-import android.util.Log;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.database.tables.MatchesTable;
 import com.thebluealliance.androidclient.gcm.notifications.NotificationTypes;
 import com.thebluealliance.androidclient.helpers.JSONHelper;
 import com.thebluealliance.androidclient.helpers.MatchHelper;
+import com.thebluealliance.androidclient.listitems.MatchListElement;
 import com.thebluealliance.androidclient.types.MatchType;
 import com.thebluealliance.androidclient.types.ModelType;
-import com.thebluealliance.androidclient.listitems.MatchListElement;
+
+import android.util.Log;
 
 import java.util.Date;
 
@@ -341,8 +342,9 @@ public class Match extends BasicModel<Match> {
     /**
      * Renders a MatchListElement for displaying this match. ASSUMES 3v3 match structure with
      * red/blue alliances Use different render methods for other structures
-     * @deprecated In favor of {@link com.thebluealliance.androidclient.renderers.MatchRenderer}
+     *
      * @return A MatchListElement to be used to display this match
+     * @deprecated In favor of {@link com.thebluealliance.androidclient.renderers.MatchRenderer}
      */
     public MatchListElement render(boolean showVideo, boolean showHeaders, boolean showMatchTitle, boolean clickable) {
         JsonObject alliances = null;

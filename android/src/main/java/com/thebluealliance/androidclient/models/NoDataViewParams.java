@@ -15,11 +15,15 @@ public class NoDataViewParams {
         this.mImageResId = imageResId;
     }
 
-    public @DrawableRes int getImageResId() {
+    public
+    @DrawableRes
+    int getImageResId() {
         return mImageResId;
     }
 
-    public @StringRes int getTextResId() {
+    public
+    @StringRes
+    int getTextResId() {
         return mTextResId;
     }
 }

@@ -1,12 +1,12 @@
 package com.thebluealliance.androidclient.listitems;
 
+import com.thebluealliance.androidclient.R;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import com.thebluealliance.androidclient.R;
 
 public class LabelValueListItem extends ListElement {
 
@@ -21,10 +21,10 @@ public class LabelValueListItem extends ListElement {
         }
         LabelValueListItem element = (LabelValueListItem) o;
         return label.equals(element.label) &&
-          value.equals(element.value) &&
-          intent.equals(element.intent) &&
-          (listItem == null || listItem.equals(element.listItem)) &&
-          layout == element.layout;
+                value.equals(element.value) &&
+                intent.equals(element.intent) &&
+                (listItem == null || listItem.equals(element.listItem)) &&
+                layout == element.layout;
     }
 
     public LabelValueListItem(String label, String value, String intent, int layout) {

@@ -1,5 +1,7 @@
 package com.thebluealliance.androidclient.listeners;
 
+import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -7,8 +9,6 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.view.View;
 import android.widget.Toast;
-
-import com.thebluealliance.androidclient.helpers.AnalyticsHelper;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class SocialClickListener implements View.OnClickListener {
             } else {
                 // No application can handle this intent
                 Toast.makeText(mContext, "No app can handle that request", Toast.LENGTH_SHORT)
-                  .show();
+                        .show();
             }
         }
     }

@@ -1,5 +1,7 @@
 package com.thebluealliance.androidclient.activities.settings;
 
+import com.thebluealliance.androidclient.R;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
@@ -7,8 +9,6 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-import com.thebluealliance.androidclient.R;
 
 /**
  * File created by phil on 9/5/14.

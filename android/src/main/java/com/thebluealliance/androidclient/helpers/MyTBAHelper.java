@@ -1,14 +1,15 @@
 package com.thebluealliance.androidclient.helpers;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
+
+import com.thebluealliance.androidclient.Constants;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-import com.thebluealliance.androidclient.Constants;
 
 import java.util.Map;
 

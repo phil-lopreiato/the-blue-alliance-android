@@ -1,19 +1,20 @@
 package com.thebluealliance.androidclient.gcm.notifications;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
+
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.activities.ViewDistrictActivity;
+import com.thebluealliance.androidclient.helpers.EventHelper;
+import com.thebluealliance.androidclient.helpers.JSONHelper;
+import com.thebluealliance.androidclient.helpers.MyTBAHelper;
+import com.thebluealliance.androidclient.models.StoredNotification;
+
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v4.app.NotificationCompat;
-
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.activities.ViewDistrictActivity;
-import com.thebluealliance.androidclient.helpers.JSONHelper;
-import com.thebluealliance.androidclient.helpers.EventHelper;
-import com.thebluealliance.androidclient.helpers.MyTBAHelper;
-import com.thebluealliance.androidclient.models.StoredNotification;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -1,19 +1,20 @@
 package com.thebluealliance.androidclient.models;
 
-import android.util.Log;
-
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.Utilities;
 import com.thebluealliance.androidclient.database.Database;
 import com.thebluealliance.androidclient.database.tables.EventsTable;
 import com.thebluealliance.androidclient.gcm.notifications.NotificationTypes;
 import com.thebluealliance.androidclient.helpers.EventHelper;
-import com.thebluealliance.androidclient.types.EventType;
 import com.thebluealliance.androidclient.helpers.JSONHelper;
-import com.thebluealliance.androidclient.types.ModelType;
 import com.thebluealliance.androidclient.helpers.ThreadSafeFormatters;
+import com.thebluealliance.androidclient.types.EventType;
+import com.thebluealliance.androidclient.types.ModelType;
+
+import android.util.Log;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -328,8 +329,8 @@ public class Event extends BasicModel<Event> {
         }
         try {
             fields.put(
-              EventsTable.END,
-              ThreadSafeFormatters.parseEventDate(endString).getTime());
+                    EventsTable.END,
+                    ThreadSafeFormatters.parseEventDate(endString).getTime());
         } catch (ParseException ex) {
             //can't parse the date
             throw new IllegalArgumentException("Invalid date format. Should be like yyyy-MM-dd");
@@ -437,7 +438,7 @@ public class Event extends BasicModel<Event> {
                 return ThreadSafeFormatters.renderEventDate(startDate);
             }
             return ThreadSafeFormatters.renderEventShortFormat(startDate) + " to " +
-              ThreadSafeFormatters.renderEventDate(endDate);
+                    ThreadSafeFormatters.renderEventDate(endDate);
         } catch (FieldNotDefinedException e) {
             Log.w(Constants.LOG_TAG, "Missing fields for getting date string. \n" +
                     "Required fields: Database.Events.START, Database.Events.END");

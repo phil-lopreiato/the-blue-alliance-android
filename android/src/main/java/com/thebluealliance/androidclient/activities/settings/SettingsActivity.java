@@ -1,5 +1,14 @@
 package com.thebluealliance.androidclient.activities.settings;
 
+import com.thebluealliance.androidclient.BuildConfig;
+import com.thebluealliance.androidclient.Constants;
+import com.thebluealliance.androidclient.R;
+import com.thebluealliance.androidclient.Utilities;
+import com.thebluealliance.androidclient.accounts.AccountHelper;
+import com.thebluealliance.androidclient.activities.ContributorsActivity;
+import com.thebluealliance.androidclient.activities.MyTBAOnboardingActivity;
+import com.thebluealliance.androidclient.activities.OpenSourceLicensesActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,15 +20,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.thebluealliance.androidclient.BuildConfig;
-import com.thebluealliance.androidclient.Constants;
-import com.thebluealliance.androidclient.R;
-import com.thebluealliance.androidclient.Utilities;
-import com.thebluealliance.androidclient.accounts.AccountHelper;
-import com.thebluealliance.androidclient.activities.ContributorsActivity;
-import com.thebluealliance.androidclient.activities.MyTBAOnboardingActivity;
-import com.thebluealliance.androidclient.activities.OpenSourceLicensesActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -47,21 +47,21 @@ public class SettingsActivity extends AppCompatActivity {
             String commit = "";
             if (BuildConfig.VERSION_NAME.contains("+")) {
                 commit = BuildConfig.VERSION_NAME.replace(".dirty", "")
-                  .substring(BuildConfig.VERSION_NAME.indexOf('+') + 2);
+                        .substring(BuildConfig.VERSION_NAME.indexOf('+') + 2);
             }
             String versionName = String.format("v%1$d.%2$d.%3$d", major, minor, patch);
             String buildTime = Utilities.getBuildTimestamp(getActivity());
             if (commit.isEmpty()) {
                 versionInfo = String.format(
-                  getString(R.string.settings_build_info_summary),
-                  versionName,
-                  buildTime);
+                        getString(R.string.settings_build_info_summary),
+                        versionName,
+                        buildTime);
             } else {
                 versionInfo = String.format(
-                  getString(R.string.settings_build_info_summary_debug),
-                  versionName,
-                  buildTime,
-                  commit);
+                        getString(R.string.settings_build_info_summary_debug),
+                        versionName,
+                        buildTime,
+                        commit);
             }
             appVersion.setSummary(versionInfo);
 
@@ -80,16 +80,16 @@ public class SettingsActivity extends AppCompatActivity {
             Preference changelog = findPreference("changelog");
             if (commit.isEmpty()) {
                 changelog.setIntent(
-                  new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://github.com/the-blue-alliance/the-blue-alliance-android/" +
-                      "releases/tag/" + versionName)));
+                        new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/the-blue-alliance/the-blue-alliance-android/" +
+                                        "releases/tag/" + versionName)));
             } else {
                 changelog.setIntent(
-                  new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://github.com/the-blue-alliance/the-blue-alliance-android/" +
-                      "commit/" + commit)));
+                        new Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/the-blue-alliance/the-blue-alliance-android/" +
+                                        "commit/" + commit)));
             }
 
             Preference tbaLink = findPreference("tba_link");

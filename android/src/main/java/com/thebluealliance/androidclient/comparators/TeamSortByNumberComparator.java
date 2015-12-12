@@ -1,10 +1,10 @@
 package com.thebluealliance.androidclient.comparators;
 
-import android.util.Log;
-
 import com.thebluealliance.androidclient.Constants;
 import com.thebluealliance.androidclient.models.BasicModel;
 import com.thebluealliance.androidclient.models.Team;
+
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Comparator;
