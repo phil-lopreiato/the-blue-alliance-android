@@ -12,10 +12,20 @@ android:
     - extra-google-m2repository
     - extra-google-google_play_services
 
-script: mkdir android/src/main/assets && touch android/src/main/assets/tba.properties &&  ./gradlew androidCheckstyle && ./gradlew testProdDebugProguardUnitTest --stacktrace
+env:
+  - JOB=UNIT
+  - JOB=COVERAGE
+  - JOB=CHECKSTYLE
+
+before_script:
+  - mkdir android/src/main/assets
+  - touch android/src/main/assets/tba.properties
+
+script:
+  - ./scripts/travis-worker.sh $JOB
 
 after_success:
-- ./gradlew jacocoTestReport coveralls
+  - ./gradlew jacocoTestReport coveralls
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
