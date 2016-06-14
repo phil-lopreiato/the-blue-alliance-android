@@ -1,16 +1,11 @@
-language: android
-jdk: oraclejdk8
-sudo: false
+sudo: true
 
-android:
-  components:
-    - platform-tools
-    - tools
-    - build-tools-23.0.2
-    - android-23
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - extra-google-google_play_services
+services:
+  - docker
+
+before_install:
+  - docker pull thebluealliance/android-ci
+  - docker run --name ci -v $HOME:$HOME -w `pwd` -t thebluealliance/android-ci
 
 env:
   - JOB=UNIT
@@ -18,11 +13,11 @@ env:
   - JOB=CHECKSTYLE
 
 before_script:
-  - mkdir android/src/main/assets
-  - touch android/src/main/assets/tba.properties
+  - docker exec -d ci cd /opt/the-blue-alliance-android
 
 script:
-  - ./scripts/travis-worker.sh $JOB
+  - docker exec -d ci ./scripts/travis-worker.sh $JOB
+  - docker logs ci
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
