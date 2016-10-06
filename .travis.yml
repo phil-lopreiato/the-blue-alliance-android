@@ -16,7 +16,7 @@ before_script:
   - touch android/src/main/assets/tba.properties
 
 script:
-  - docker run -it -v ./:/src:z docker.io/neroinc/fedora-android /bin/bash -c "cd /src && ./scripts/travis-worker.sh $JOB"
+  - docker run -it -v $(pwd):/src:z docker.io/neroinc/fedora-android /bin/bash -c "cd /src && ./scripts/travis-worker.sh $JOB"
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
