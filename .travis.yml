@@ -1,28 +1,22 @@
-language: android
-jdk: oraclejdk8
-sudo: false
+sudo: required
 
-android:
-  components:
-    - platform-tools
-    - tools
-    - build-tools-23.0.2
-    - android-23
-    - extra-android-m2repository
-    - extra-google-m2repository
-    - extra-google-google_play_services
+services:
+ - docker
 
 env:
   - JOB=UNIT
   - JOB=COVERAGE
   - JOB=CHECKSTYLE
 
+before_install:
+  - docker pull neroinc/fedora-android
+
 before_script:
   - mkdir android/src/main/assets
   - touch android/src/main/assets/tba.properties
 
 script:
-  - ./scripts/travis-worker.sh $JOB
+  - docker run -it -v ./:/src:z docker.io/neroinc/fedora-android /bin/bash -c "cd /src && ./scripts/travis-worker.sh $JOB"
 
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
