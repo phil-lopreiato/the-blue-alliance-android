@@ -5,9 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.MediaRouteButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.cast.MediaLoadOptions;
+import com.google.android.gms.cast.MediaMetadata;
+import com.google.android.gms.cast.framework.CastButtonFactory;
+import com.google.android.gms.cast.framework.CastContext;
+import com.google.android.gms.cast.framework.CastSession;
+import com.google.android.gms.cast.framework.SessionManagerListener;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.thebluealliance.androidclient.NfcUris;
 import com.thebluealliance.androidclient.R;
 import com.thebluealliance.androidclient.ShareUris;
@@ -41,6 +51,7 @@ public class ViewEventActivity extends MyTBASettingsActivity
     private ViewPager pager;
     private ViewEventFragmentPagerAdapter adapter;
     private boolean isDistrict;
+    private CastContext mCastContext;
     private FragmentComponent mComponent;
 
     /**
@@ -110,6 +121,8 @@ public class ViewEventActivity extends MyTBASettingsActivity
         isDistrict = true;
 
         setSettingsToolbarTitle("Event Settings");
+        mCastContext = CastContext.getSharedInstance(this);
+        setupCastListener();
     }
 
     @Override
@@ -162,12 +175,118 @@ public class ViewEventActivity extends MyTBASettingsActivity
             mOnNewIntentRunnable.run();
             mOnNewIntentRunnable = null;
         }
+
+        mCastContext.getSessionManager().addSessionManagerListener(
+                mSessionManagerListener, CastSession.class);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mCastContext.getSessionManager().removeSessionManagerListener(
+                mSessionManagerListener, CastSession.class);
     }
 
     @Override
     public void onCreateNavigationDrawer() {
         useActionBarToggle(false);
         encourageLearning(false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.cast_menu, menu);
+        CastButtonFactory.setUpMediaRouteButton(getApplicationContext(),
+                menu,
+                R.id.media_route_menu_item);
+        return true;
+    }
+
+    private CastSession mCastSession;
+    private SessionManagerListener<CastSession> mSessionManagerListener;
+
+    private void setupCastListener() {
+        mSessionManagerListener = new SessionManagerListener<CastSession>() {
+
+            @Override
+            public void onSessionEnded(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionResumed(CastSession session, boolean wasSuspended) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionResumeFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarted(CastSession session, String sessionId) {
+                onApplicationConnected(session);
+            }
+
+            @Override
+            public void onSessionStartFailed(CastSession session, int error) {
+                onApplicationDisconnected();
+            }
+
+            @Override
+            public void onSessionStarting(CastSession session) {}
+
+            @Override
+            public void onSessionEnding(CastSession session) {}
+
+            @Override
+            public void onSessionResuming(CastSession session, String sessionId) {}
+
+            @Override
+            public void onSessionSuspended(CastSession session, int reason) {}
+
+            private void onApplicationConnected(CastSession castSession) {
+                TbaLogger.i("Cast application connected");
+                mCastSession = castSession;
+                supportInvalidateOptionsMenu();
+                loadRemoteMedia();
+            }
+
+            private void onApplicationDisconnected() {
+                supportInvalidateOptionsMenu();
+            }
+        };
+    }
+
+
+    private MediaInfo buildMediaInfo() {
+        MediaMetadata movieMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_GENERIC);
+
+        movieMetadata.putString(MediaMetadata.KEY_SUBTITLE, "nefirst_red");
+        movieMetadata.putString(MediaMetadata.KEY_TITLE, "Webcast");
+
+        return new MediaInfo.Builder("https://video-weaver.fra02.hls.ttvnw.net/v1/playlist/CsYDXJiuYA-Iyi4XmjoFA9bycV2AYOmq3I8hjsulTuyClh9k1COnGDw6XYEL_Z7FU94ZTamMkwXIrCwipjO0tihuVxlmjsz9K9taQyycvhheMzM_LfGHGZ_ZThGiIkgPRnRSO0_aEGZwBPoicwEMVw9vk6YdsvQGHwNQEmSA-w6ax-HRO2mhlFCqW7x3TF3756zaV8aYse4yVClVsS7Q99KKzLXb7ciEvONDeMVb5fAi0ZcsV2VsAH7fcYY3Hj32J9Cy3-Q2EVc1d0h4_0FXYbDNtBMWNal7vH0QHa7hhJiLCspLMnqbf8yLaDq4Q_gzwFf6m4exqp69r1jl-hxpdYc79WXm1kaqb9NNQymcq4hyEPjYh4WzbVWGP3JUoX7pTfCWGzGAtoWOzCDozM_GBbIDn8kTvDeTj8i_wNsu3XyquH0zdHBhsP9UZIeTOrxVt3X8DwvhnPRYgVl_pzXOassWvX39Fsi-9JFg7hSDErPCDN9JZKX7f4edQ6PPR_g9tMgUZik73osxXNjjixK9WkOqKEd5ha5qKvdP4ARsFxrCMwzwUiCtvYjX1Em4ZJDwg21g5KtPnr9uHH1mp4r6_QcciBD6w82O7BIQ0C2M8xZ43jjzm7-Hk9pCRBoMh0EzBinWMniwm28a.m3u8")
+                .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
+                .setContentType("videos/mp4")
+                .setMetadata(movieMetadata)
+                .build();
+    }
+
+    private void loadRemoteMedia() {
+        if (mCastSession == null) {
+            TbaLogger.w("Can't load remote media - no session found");
+            return;
+        }
+        RemoteMediaClient remoteMediaClient = mCastSession.getRemoteMediaClient();
+        if (remoteMediaClient == null) {
+            TbaLogger.w("Can't load remote media - no client found");
+            return;
+        }
+        TbaLogger.i("Loading remote media");
+        remoteMediaClient.load(buildMediaInfo(),
+                new MediaLoadOptions.Builder()
+                        .setAutoplay(true).build());
     }
 
     private void setupActionBar() {
